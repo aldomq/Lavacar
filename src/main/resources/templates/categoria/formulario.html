@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Categoría</title>
+</head>
+<body>
+    <h1>Formulario de Categoría</h1>
+
+    <a th:href="@{/categoria/listado}">Volver</a>
+
+    <form>
+        <label>Nombre:</label>
+        <input type="text" name="nombre"><br><br>
+
+        <label>Descripción:</label>
+        <input type="text" name="descripcion"><br><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

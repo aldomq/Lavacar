@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavacar</title>
+</head>
+<body>
+    <h1>Sistema Lavacar</h1>
+    
+    <h2>Menú principal</h2>
+    
+    <ul>
+        <li><a th:href="@{/producto/listado}">Ver productos</a></li>
+        <li><a th:href="@{/producto/nuevo}">Agregar producto</a></li>
+        <li><a th:href="@{/categoria/listado}">Ver categorías</a></li>
+        <li><a th:href="@{/categoria/nueva}">Agregar categoría</a></li>
+    </ul>
+</body>
+</html>
