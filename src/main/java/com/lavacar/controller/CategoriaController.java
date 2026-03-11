@@ -13,18 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CategoriaController {
 
     @GetMapping("/listado")
-    public String listado(Model model) {
+    public String inicio(Model model) {
+
         List<Categoria> categorias = new ArrayList<>();
+
         categorias.add(new Categoria(1L, "Shampoo", "Productos para lavado"));
         categorias.add(new Categoria(2L, "Ceras", "Productos para encerado"));
 
         model.addAttribute("categorias", categorias);
-        return "categoria/listado";
+        model.addAttribute("totalCategorias", categorias.size());
+
+        return "/categoria/listado";
     }
 
     @GetMapping("/nueva")
-    public String nuevaCategoria(Model model) {
+    public String nueva(Model model) {
         model.addAttribute("categoria", new Categoria());
-        return "categoria/formulario";
+        return "/categoria/formulario";
     }
+
 }
