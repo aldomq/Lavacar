@@ -68,9 +68,7 @@
 
             <div class="d-flex justify-content-between mb-3 small">
 
-                <div class="text-white">
-                    <input type="checkbox"> Remember me
-                </div>
+               
 
                 <a href="#" class="text-white">
                     Forgot Password?
@@ -82,16 +80,17 @@
                     class="btn btn-dark w-100 btn-pill mb-3">
                 LOGIN
             </button>
-
+<p th:if="${error}" th:text="${error}" style="color:red;"></p>
             <a th:href="@{/registro}"
                class="btn btn-primary w-100 btn-pill mb-3">
                 REGISTER
             </a>
 
-            <a th:href="@{/admin}"
-               class="btn btn-light w-100 btn-pill">
-                admin
-            </a>
+           <a th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'ADMIN'}"
+   th:href="@{/admin}"
+   class="btn btn-light w-100 btn-pill">
+    Admin
+</a>
 
         </form>
 

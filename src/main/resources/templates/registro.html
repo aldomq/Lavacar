@@ -75,32 +75,45 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             Registro
         </div>
 
-        <form th:action="@{/registro}" method="post">
+      <form th:action="@{/registro}" method="post">
 
-            <input type="text" class="form-control" placeholder="Nombre" name="firstName" required>
+    <!-- Nombre -->
+    <input type="text" class="form-control"
+           placeholder="Nombre"
+           name="nombre" required>
 
-            <input type="text" class="form-control" placeholder="Apellido" name="lastName" required>
+    <!-- Email -->
+    <input type="email" class="form-control"
+           placeholder="Correo electrónico"
+           name="email" required>
 
-            <input type="email" class="form-control" placeholder="Correo eléctonico" name="email" required>
+    <!-- Username -->
+    <input type="text" class="form-control"
+           placeholder="Usuario"
+           name="username" required>
 
-            <input type="text" class="form-control" placeholder="Usuario" name="username" required>
+    <!-- Password -->
+    <input type="password" class="form-control"
+           placeholder="Contraseña"
+           name="password" required>
 
-            <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
+    <!-- (Opcional frontend) -->
+    <input type="password" class="form-control"
+           placeholder="Repetir contraseña"
+           name="confirmPassword">
 
-            <input type="password" class="form-control" placeholder="Repetir la contraseña " name="confirmPassword" required>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" required>
+        <label class="form-check-label">
+            Estoy de acuerdo con los términos
+        </label>
+    </div>
 
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" required>
-                <label class="form-check-label">
-                    Estoy de acuerdo con los términos y condiciones
-                </label>
-            </div>
+    <button type="submit" class="btn btn-signup">
+        Registrarse
+    </button>
 
-            <button type="submit" class="btn btn-signup">
-               Registrarse
-            </button>
-
-        </form>
+</form>
 
     </div>
 <footer th:replace="~{fragmentos :: footer}">

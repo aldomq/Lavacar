@@ -1,10 +1,21 @@
 package com.lavacar.domain;
 
+import jakarta.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "categoria")
 public class Categoria {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCategoria;
+
     private String nombre;
     private String descripcion;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 
     public Categoria() {
     }
@@ -37,5 +48,13 @@ public class Categoria {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 }

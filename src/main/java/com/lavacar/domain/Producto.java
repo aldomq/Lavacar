@@ -1,12 +1,21 @@
 package com.lavacar.domain;
-
+import java.util.List;
+import jakarta.persistence.*;
+@Entity
+@Table(name = "producto")
 public class Producto {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProducto;
+
     private String nombre;
     private String descripcion;
     private double precio;
     private int existencias;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
     private Categoria categoria;
 
     public Producto() {
