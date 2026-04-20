@@ -1,6 +1,13 @@
 package com.lavacar.domain;
-import java.util.List;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -13,6 +20,7 @@ public class Producto {
     private String descripcion;
     private double precio;
     private int existencias;
+    private String imagenUrl;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
@@ -21,12 +29,13 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(Long idProducto, String nombre, String descripcion, double precio, int existencias, Categoria categoria) {
+    public Producto(Long idProducto, String nombre, String descripcion, double precio, int existencias, String imagenUrl, Categoria categoria) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.existencias = existencias;
+        this.imagenUrl = imagenUrl;
         this.categoria = categoria;
     }
 
@@ -68,6 +77,14 @@ public class Producto {
 
     public void setExistencias(int existencias) {
         this.existencias = existencias;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
     }
 
     public Categoria getCategoria() {

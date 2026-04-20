@@ -47,7 +47,7 @@ public class LoginController {
 
         if (user != null) {
             session.setAttribute("usuarioLogueado", user);
-            return "redirect:/producto/listado";
+            return "redirect:/";
         } else {
             model.addAttribute("error", "Credenciales incorrectas");
             return "login";
