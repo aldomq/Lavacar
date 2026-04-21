@@ -143,6 +143,18 @@
                 </div>
             </div>
 
+            <div class="col-md-4" th:if="${session.usuarioLogueado.rol == 'USER'}">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Carrito</h3>
+                        <p class="card-text">
+                            Agrega productos, revisa cantidades y finaliza una compra simulada con PayPal o tarjeta.
+                        </p>
+                        <a class="btn btn-primary" th:href="@{/carrito}">Ir al carrito</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-md-4" th:if="${session.usuarioLogueado.rol == 'ADMIN'}">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body text-center">

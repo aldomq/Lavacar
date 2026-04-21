@@ -60,7 +60,3 @@ CREATE TABLE cola_lavado (
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
-
-INSERT INTO usuario (username, password, nombre, email, activo, rol) VALUES
-('admin', '1234', 'Administrador', 'admin@lavacar.com', TRUE, 'ADMIN'),
-('user1', '1234', 'Usuario Uno', 'user1@lavacar.com', TRUE, 'USER');

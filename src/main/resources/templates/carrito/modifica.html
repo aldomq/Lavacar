@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: head}">
+</head>
+<body>
+<header th:replace="~{fragmentos :: header}">
+</header>
+
+<div class="container py-5">
+    <div class="mb-3">
+        <a class="btn btn-outline-secondary btn-sm" th:href="@{/carrito/listado}">Volver al carrito</a>
+    </div>
+    <div class="card shadow-sm border-0 mx-auto" style="max-width: 820px;">
+        <div class="card-body p-4">
+            <h3 class="mb-4">Modificar producto del carrito</h3>
+
+            <div class="row align-items-center g-4">
+                <div class="col-md-4 text-center">
+                    <img th:if="${item.imagenUrl != null and !#strings.isEmpty(item.imagenUrl)}"
+                         th:src="${item.imagenUrl}"
+                         th:alt="${item.nombre}"
+                         style="width: 180px; height: 180px; object-fit: cover; border-radius: 18px;">
+                </div>
+                <div class="col-md-8">
+                    <h4 th:text="${item.nombre}"></h4>
+                    <p class="text-muted">Ajusta la cantidad y el subtotal se actualiza visualmente.</p>
+                    <p class="mb-3">
+                        <strong>Precio unitario:</strong>
+                        <span th:text="${#numbers.formatDecimal(item.precio, 1, 'COMMA', 2, 'POINT')}"></span>
+                    </p>
+
+                    <form th:action="@{/carrito/actualizar}" method="post" class="mb-4">
+                        <input type="hidden" name="productoId" th:value="${item.productoId}">
+                        <div class="d-flex gap-2 align-items-center flex-wrap">
+                            <label for="cantidadInput" class="form-label mb-0">Cantidad</label>
+                            <input id="cantidadInput"
+                                   type="number"
+                                   name="cantidad"
+                                   min="1"
+                                   th:value="${item.cantidad}"
+                                   class="form-control"
+                                   style="max-width: 110px;"
+                                   oninput="calcularSubtotal()">
+                            <button type="submit" class="btn btn-success">Guardar cambios</button>
+                        </div>
+                    </form>
+
+                    <div class="alert alert-light border">
+                        <strong>Subtotal actual:</strong>
+                        <span id="subtotalVisual"
+                              th:data-precio="${item.precio}"
+                              th:text="${#numbers.formatDecimal(item.subtotal, 1, 'COMMA', 2, 'POINT')}"></span>
+                    </div>
+
+                    <form th:action="@{/carrito/eliminar/{id}(id=${item.productoId})}" method="post">
+                        <button type="submit" class="btn btn-outline-danger">Quitar del carrito</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calcularSubtotal() {
+        const cantidad = Number(document.getElementById('cantidadInput').value || 0);
+        const subtotal = document.getElementById('subtotalVisual');
+        const precio = Number(subtotal.dataset.precio || 0);
+        const total = cantidad * precio;
+        subtotal.textContent = total.toFixed(2);
+    }
+</script>
+<footer th:replace="~{fragmentos :: footer}">
+</footer>
+</body>
+</html>

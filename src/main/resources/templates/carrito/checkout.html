@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos :: head}">
+</head>
+<body>
+<header th:replace="~{fragmentos :: header}">
+</header>
+
+<div class="container mt-5">
+    <div class="mb-3">
+        <a class="btn btn-outline-secondary btn-sm" th:href="@{/carrito/listado}">Volver al carrito</a>
+    </div>
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    Finalizar compra
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/carrito/finalizar}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Metodo de pago</label>
+                            <select class="form-select" name="metodoPago" id="metodoPago" onchange="toggleMetodoPago()">
+                                <option value="PAYPAL">PayPal (fake)</option>
+                                <option value="TARJETA">Tarjeta (fake)</option>
+                            </select>
+                        </div>
+
+                        <div id="pagoPaypal">
+                            <div class="mb-3">
+                                <label class="form-label">Correo PayPal</label>
+                                <input type="email" name="paypalCorreo" class="form-control" placeholder="cliente@paypal.com">
+                            </div>
+                        </div>
+
+                        <div id="pagoTarjeta" style="display:none;">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre del titular</label>
+                                <input type="text" name="nombreTitular" class="form-control" placeholder="Nombre completo">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Numero de tarjeta fake</label>
+                                <input type="text" name="numeroTarjeta" class="form-control" placeholder="4111 1111 1111 1111">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Pagar ahora</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white">
+                    Resumen
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3" th:each="item : ${carrito}">
+                        <span th:text="${item.nombre + ' x' + item.cantidad}"></span>
+                        <span th:text="${#numbers.formatDecimal(item.subtotal, 1, 'COMMA', 2, 'POINT')}"></span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between fw-bold">
+                        <span>Total</span>
+                        <span th:text="${#numbers.formatDecimal(totalCarrito, 1, 'COMMA', 2, 'POINT')}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleMetodoPago() {
+        const metodo = document.getElementById('metodoPago').value;
+        document.getElementById('pagoPaypal').style.display = metodo === 'PAYPAL' ? 'block' : 'none';
+        document.getElementById('pagoTarjeta').style.display = metodo === 'TARJETA' ? 'block' : 'none';
+    }
+    toggleMetodoPago();
+</script>
+<footer th:replace="~{fragmentos :: footer}">
+</footer>
+</body>
+</html>
