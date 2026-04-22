@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: head}"></head>
+
+
+<style>
+body{
+    background: linear-gradient(135deg,#0d6efd,#0dcaf0);
+    min-height:100vh;
+}
+
+.contact-box{
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.icon{
+    font-size:35px;
+}
+</style>
+
+</head>
+<body>
+<header th:replace="~{fragmentos :: header}"></header>
+<div class="container py-5">
+
+<div class="row justify-content-center">
+<div class="col-md-8">
+
+<div class="contact-box text-center">
+
+<h1 class="mb-4"> Lavacar</h1>
+
+<h3 class="mb-3">Contáctanos</h3>
+
+<p class="text-muted mb-4">
+Estamos para servirte. Escríbenos o llámanos cuando quieras.
+Será un placer atender tu vehículo.
+</p>
+
+<hr>
+
+<p class="mt-4"><strong>📞 Teléfono:</strong> +506 8888-1234</p>
+
+<p><strong>📧 Correo:</strong> contacto@lavacarcr.com</p>
+
+<p><strong>📍 Dirección:</strong> Alajuela, Costa Rica</p>
+
+<p><strong>🕒 Horario:</strong> Lunes a Sábado 8:00am - 6:00pm</p>
+
+<a href="/" class="btn btn-primary mt-3">
+Volver al Inicio
+</a>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<footer th:replace="~{fragmentos :: footer}"></footer>
+
+
+
+</body>
+</html>
